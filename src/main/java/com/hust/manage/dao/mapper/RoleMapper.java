@@ -1,4 +1,4 @@
-package com.hust.manage.dao;
+package com.hust.manage.dao.mapper;
 
 import com.hust.manage.model.Role;
 import com.hust.manage.model.RoleExample;

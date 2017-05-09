@@ -1,4 +1,4 @@
-package com.hust.manage.dao;
+package com.hust.manage.dao.mapper;
 
 import com.hust.manage.model.Power;
 import com.hust.manage.model.PowerExample;

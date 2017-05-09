@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hust.manage.dao.PowerMapper" >
+<mapper namespace="com.hust.manage.dao.mapper.PowerMapper" >
   <resultMap id="BaseResultMap" type="com.hust.manage.model.Power" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="power_name" property="powerName" jdbcType="VARCHAR" />
