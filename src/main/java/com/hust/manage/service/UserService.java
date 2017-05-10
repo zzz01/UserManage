@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.hust.manage.model.Role;
 import com.hust.manage.model.User;
 import com.hust.manage.model.condition.UserQueryCondition;
 

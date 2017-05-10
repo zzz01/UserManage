@@ -27,7 +27,7 @@ import com.hust.manage.service.UserService;
 import com.hust.manage.util.ResultUtil;
 import com.hust.manage.util.TimeUtil;
 
-@Controller("user")
+@Controller
 @RequestMapping("/user")
 public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -41,6 +41,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/getUserInfo")
 	public User getUserInfo() {
+
 		return null;
 	}
 

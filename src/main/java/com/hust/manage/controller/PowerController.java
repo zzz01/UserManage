@@ -16,6 +16,7 @@ import com.hust.manage.service.PowerService;
 import com.hust.manage.util.ResultUtil;
 
 @Controller
+@RequestMapping("/power")
 public class PowerController {
 
 	@Autowired

@@ -20,7 +20,5 @@ public class TestSpringMybatis {
 
 	@Test
 	public void test() {
-		System.out.println(userService.getUserById(1).getCreatedate());
-		logger.info("test spring+mybatis ");
 	}
 }

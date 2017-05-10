@@ -19,6 +19,7 @@ import com.hust.manage.service.RoleService;
 import com.hust.manage.util.ResultUtil;
 
 @Controller
+@RequestMapping("/role")
 public class RoleController {
 	private static final Logger logger = LoggerFactory.getLogger(RoleController.class);
 	@Autowired
@@ -101,7 +102,5 @@ public class RoleController {
 		}
 		return ResultUtil.success(elements);
 	}
-	
-	
 
 }
