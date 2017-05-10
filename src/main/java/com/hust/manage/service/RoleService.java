@@ -8,6 +8,8 @@ import com.hust.manage.model.Role;
 public interface RoleService {
 
 	List<Role> selectAllRole(int pageStart, int pageLimit);
+	
+	List<Role> selectAllRole();
 
 	List<Role> selectRoleByName(String roleName);
 

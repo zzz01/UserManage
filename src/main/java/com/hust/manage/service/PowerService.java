@@ -13,4 +13,6 @@ public interface PowerService {
 	boolean deletePowerById(int powerId);
 
 	boolean updatePower(Power power);
+
+	List<Power> selectPowerByLikePowerName(String powerName);
 }

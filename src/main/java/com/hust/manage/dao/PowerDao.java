@@ -55,6 +55,22 @@ public class PowerDao {
 		return powers;
 	}
 
+	public List<Power> selectPowerByPowerName(String powerName) {
+		PowerExample example = new PowerExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andPowerNameEqualTo(powerName);
+		List<Power> powers = powerMapper.selectByExample(example);
+		return powers;
+	}
+
+	public List<Power> selectPowerByLikePowerName(String powerName) {
+		PowerExample example = new PowerExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andPowerNameLike(powerName + "%");
+		List<Power> power = powerMapper.selectByExample(example);
+		return power;
+	}
+
 	public List<Power> selectAllPowers(int pageStart, int pageLimit) {
 		PowerExample example = new PowerExample();
 		Criteria criteria = example.createCriteria();

@@ -71,4 +71,10 @@ public class PowerServiceImpl implements PowerService {
 		}
 		return true;
 	}
+
+	@Override
+	public List<Power> selectPowerByLikePowerName(String powerName) {
+		List<Power> power = powerDao.selectPowerByLikePowerName(powerName);
+		return power;
+	}
 }

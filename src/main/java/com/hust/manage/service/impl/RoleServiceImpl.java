@@ -96,8 +96,8 @@ public class RoleServiceImpl implements RoleService {
 				return false;
 			}
 		}
-		int statue = roleDao.updateByPrimaryKey(role);
-		if (statue == 0) {
+		int status = roleDao.updateByPrimaryKey(role);
+		if (status == 0) {
 			logger.info("update role is error");
 			return false;
 		}
@@ -119,8 +119,8 @@ public class RoleServiceImpl implements RoleService {
 		for (int powerInfo : oldPowers) {
 			// 删除
 			if (!newPowers.contains(powerInfo)) {
-				int statueOfRolePower = rolePowerDao.deleteRolePowerById(powerInfo, role.getId());
-				if (statueOfRolePower == 0) {
+				int statusOfRolePower = rolePowerDao.deleteRolePowerById(powerInfo, role.getId());
+				if (statusOfRolePower == 0) {
 					logger.info("delete rolePower is error");
 					return false;
 				}
@@ -132,8 +132,8 @@ public class RoleServiceImpl implements RoleService {
 				RolePower rolePower = new RolePower();
 				rolePower.setPoweId(powerInfo);
 				rolePower.setRoleId(role.getId());
-				int statueOfRolePower = rolePowerDao.insert(rolePower);
-				if (statueOfRolePower == 0) {
+				int statusOfRolePower = rolePowerDao.insert(rolePower);
+				if (statusOfRolePower == 0) {
 					logger.info("insert rolepower is error");
 					return false;
 				}
@@ -161,6 +161,12 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public List<Role> selectRoleByName(String roleName) {
 		List<Role> role = roleDao.selectRoleByName(roleName);
+		return role;
+	}
+
+	@Override
+	public List<Role> selectAllRole() {
+		List<Role> role = roleDao.selectAllRole();
 		return role;
 	}
 }

@@ -64,8 +64,8 @@ public class UserServiceImpl implements UserService {
 				return false;
 			}
 		}
-		int statue = userDao.deleteByPrimaryKey(userId);
-		if (statue == 0) {
+		int status = userDao.deleteByPrimaryKey(userId);
+		if (status == 0) {
 			logger.info("delete userById is error ");
 			return false;
 		}
@@ -84,8 +84,8 @@ public class UserServiceImpl implements UserService {
 				return false;
 			}
 		}
-		int statue = userDao.updateByPrimaryKey(user);
-		if (statue == 0) {
+		int status = userDao.updateByPrimaryKey(user);
+		if (status == 0) {
 			logger.info("update User is error");
 			return false;
 		}
@@ -106,8 +106,8 @@ public class UserServiceImpl implements UserService {
 		for (int roleId : roleIdInfo) {
 			// 如果更新信息中不包含数据库中已经存在的角色信息，则进行数据删除；
 			if (!roleIds.contains(roleId)) {
-				int status = userRoleDao.deleteUserRoleByRoleId(roleId);
-				if (status == 0) {
+				int statusOfUserRole = userRoleDao.deleteUserRoleByRoleId(roleId);
+				if (statusOfUserRole == 0) {
 					logger.info("delete userRole by roleId is error");
 					return false;
 				}
@@ -120,8 +120,8 @@ public class UserServiceImpl implements UserService {
 				UserRole userRole = new UserRole();
 				userRole.setRoleId(roleId);
 				userRole.setUserId(user.getId());
-				int status = userRoleDao.insertUserRole(userRole);
-				if (status == 0) {
+				int statusOfUserRole = userRoleDao.insertUserRole(userRole);
+				if (statusOfUserRole == 0) {
 					logger.info("insert role for user is error");
 					return false;
 				}
@@ -137,8 +137,8 @@ public class UserServiceImpl implements UserService {
 			logger.info("user table has same as userName");
 			return false;
 		}
-		int statue = userDao.insert(user);
-		if (statue == 0) {
+		int status = userDao.insert(user);
+		if (status == 0) {
 			logger.info("insert user error ");
 			return false;
 		}
@@ -152,8 +152,8 @@ public class UserServiceImpl implements UserService {
 			UserRole userRole = new UserRole();
 			userRole.setUserId(userId);
 			userRole.setRoleId(roleIdInfo);
-			int status = userRoleDao.insertUserRole(userRole);
-			if (status == 0) {
+			int statusOfUserRole = userRoleDao.insertUserRole(userRole);
+			if (statusOfUserRole == 0) {
 				logger.info("insert userRole is error");
 				return false;
 			}

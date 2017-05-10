@@ -30,7 +30,7 @@ public class RoleDao {
 		return role;
 	}
 
-	public List<Role> selectRole() {
+	public List<Role> selectAllRole() {
 		RoleExample example = new RoleExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andIdIsNotNull();
