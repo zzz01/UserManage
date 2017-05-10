@@ -16,17 +16,28 @@ public class PowerDao {
 	@Autowired
 	private PowerMapper powerMapper;
 
-	public List<Power> selectPowerById(int powerId) {
+	public List<Power> selectOtherPowerByPowerId(int powerId) {
 		PowerExample example = new PowerExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andIdEqualTo(powerId);
-		List<Power> powers = powerMapper.selectByExample(example);
-		return powers;
+		criteria.andIdNotEqualTo(powerId);
+		List<Power> power = powerMapper.selectByExample(example);
+		return power;
+	}
+
+	public List<Power> selectByConditionOfOr(List<Integer> powerId) {
+		PowerExample example = new PowerExample();
+		for (int powerIdInfo : powerId) {
+			Criteria criteria = example.createCriteria();
+			criteria.andIdEqualTo(powerIdInfo);
+			example.or(criteria);
+		}
+		List<Power> power = powerMapper.selectByExample(example);
+		return power;
 	}
 
 	public List<Power> selectPowerByPowerId(List<Integer> powerIds) {
 		PowerExample example = new PowerExample();
-		// 查询不出来用户的所有权限
+		// 查询用户的所有权限
 		for (int powerId : powerIds) {
 			Criteria criterias = example.createCriteria();
 			criterias.andIdEqualTo(powerId);
@@ -36,18 +47,20 @@ public class PowerDao {
 		return powers;
 	}
 
-	public List<Power> selectPowerByPowerName(String powerName) {
+	public List<Power> selectOtherPowerByPowerName(String powerName) {
 		PowerExample example = new PowerExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andPowerNameEqualTo(powerName);
+		criteria.andPowerNameNotEqualTo(powerName);
 		List<Power> powers = powerMapper.selectByExample(example);
 		return powers;
 	}
 
-	public List<Power> selectAllPowers() {
+	public List<Power> selectAllPowers(int pageStart, int pageLimit) {
 		PowerExample example = new PowerExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andIdIsNotNull();
+		example.setPageStart(pageStart);
+		example.setPageLimit(pageLimit);
 		List<Power> powers = powerMapper.selectByExample(example);
 		return powers;
 	}

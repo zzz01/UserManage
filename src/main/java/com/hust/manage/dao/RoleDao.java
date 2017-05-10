@@ -20,6 +20,15 @@ public class RoleDao {
 		return roleMapper.countByExample(example);
 	}
 
+	public List<Role> selectAllRole(int pageStart, int pageLimit) {
+		RoleExample example = new RoleExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andIdIsNotNull();
+		example.setPageStart(pageStart);
+		example.setPageLimit(pageLimit);
+		List<Role> role = roleMapper.selectByExample(example);
+		return role;
+	}
 
 	public List<Role> selectRole() {
 		RoleExample example = new RoleExample();
@@ -45,7 +54,7 @@ public class RoleDao {
 		return roles;
 	}
 
-	public List<Role> selectByNotIncluedRoleName(String roleName) {
+	public List<Role> selectByOtherdRoleByRoleName(String roleName) {
 		RoleExample example = new RoleExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andRolenameNotEqualTo(roleName);
@@ -57,8 +66,8 @@ public class RoleDao {
 		return roleMapper.deleteByExample(example);
 	}
 
-	public int deleteByPrimaryKey(Integer roleId) {
-		return roleMapper.deleteByPrimaryKey(roleId);
+	public int deleteByPrimaryKey(Integer id) {
+		return roleMapper.deleteByPrimaryKey(id);
 	}
 
 	public int insert(Role record) {

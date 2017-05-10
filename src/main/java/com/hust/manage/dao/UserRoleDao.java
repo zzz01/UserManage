@@ -15,6 +15,7 @@ public class UserRoleDao {
 
 	@Autowired
 	private UserRoleMapper userRoleMapper;
+
 	public List<UserRole> selectAllUserRole() {
 		UserRoleExample example = new UserRoleExample();
 		Criteria criteria = example.createCriteria();
@@ -23,10 +24,18 @@ public class UserRoleDao {
 		return userRoles;
 	}
 
-	public int deleteUserRoleByUserId(int id) {
+	public int deleteUserRoleById(int id) {
 		UserRoleExample example = new UserRoleExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andIdEqualTo(id);
+		int statue = userRoleMapper.deleteByExample(example);
+		return statue;
+	}
+
+	public int deleteUserRoleByUserId(int userId) {
+		UserRoleExample example = new UserRoleExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(userId);
 		int statue = userRoleMapper.deleteByExample(example);
 		return statue;
 	}

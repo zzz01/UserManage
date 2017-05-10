@@ -8,7 +8,7 @@
     <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
     <result column="user_truename" property="userTruename" jdbcType="VARCHAR" />
     <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
-    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createdate" property="createdate" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -108,7 +108,7 @@
       createdate)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{userTel,jdbcType=VARCHAR}, #{userTruename,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, 
-      #{createdate,jdbcType=TIMESTAMP})
+      #{createdate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.hust.manage.model.User" >
     insert into user
@@ -155,7 +155,7 @@
         #{userAddress,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
-        #{createdate,jdbcType=TIMESTAMP},
+        #{createdate,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -187,7 +187,7 @@
         user_address = #{record.userAddress,jdbcType=VARCHAR},
       </if>
       <if test="record.createdate != null" >
-        createdate = #{record.createdate,jdbcType=TIMESTAMP},
+        createdate = #{record.createdate,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -202,7 +202,7 @@
       user_tel = #{record.userTel,jdbcType=VARCHAR},
       user_truename = #{record.userTruename,jdbcType=VARCHAR},
       user_address = #{record.userAddress,jdbcType=VARCHAR},
-      createdate = #{record.createdate,jdbcType=TIMESTAMP}
+      createdate = #{record.createdate,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -226,7 +226,7 @@
         user_address = #{userAddress,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
-        createdate = #{createdate,jdbcType=TIMESTAMP},
+        createdate = #{createdate,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -238,7 +238,7 @@
       user_tel = #{userTel,jdbcType=VARCHAR},
       user_truename = #{userTruename,jdbcType=VARCHAR},
       user_address = #{userAddress,jdbcType=VARCHAR},
-      createdate = #{createdate,jdbcType=TIMESTAMP}
+      createdate = #{createdate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

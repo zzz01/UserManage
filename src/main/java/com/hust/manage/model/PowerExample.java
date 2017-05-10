@@ -10,6 +10,26 @@ public class PowerExample {
 
 	protected List<Criteria> oredCriteria;
 
+	private int pageStart;
+
+	private int pageLimit;
+
+	public int getPageStart() {
+		return pageStart;
+	}
+
+	public void setPageStart(int pageStart) {
+		this.pageStart = pageStart;
+	}
+
+	public int getPageLimit() {
+		return pageLimit;
+	}
+
+	public void setPageLimit(int pageLimit) {
+		this.pageLimit = pageLimit;
+	}
+
 	public PowerExample() {
 		oredCriteria = new ArrayList<Criteria>();
 	}

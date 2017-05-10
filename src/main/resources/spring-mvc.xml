@@ -10,14 +10,7 @@
 
 	<context:component-scan base-package="com.hust.manage.controller">
 	</context:component-scan>
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSON转换器 -->
-			</list>
-		</property>
-	</bean>
+
 	<!--RequestMappingHandlerAdapter -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
@@ -78,19 +71,6 @@
 				<entry key="html" value="text/html" />
 				<entry key="json" value="application/json" />
 			</map>
-		</property>
-	</bean>
-
-	<!-- 第三步：注册处理器映射器/处理器适配器 ，添加conversion-service属性 -->
-	<mvc:annotation-driven conversion-service="conversionService" />
-
-	<!-- 第二步： 创建convertion-Service ，并注入dateConvert -->
-	<bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-		<property name="converters">
-			<set>
-				<ref bean="dateConvert" />
-			</set>
 		</property>
 	</bean>
 </beans>
