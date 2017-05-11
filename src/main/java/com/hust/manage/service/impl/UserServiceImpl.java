@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Service;
 
 import com.hust.manage.dao.PowerDao;
@@ -20,9 +21,9 @@ import com.hust.manage.model.Role;
 import com.hust.manage.model.RolePower;
 import com.hust.manage.model.User;
 import com.hust.manage.model.UserRole;
+import com.hust.manage.model.condition.RoleAndPower;
 import com.hust.manage.model.condition.UserQueryCondition;
 import com.hust.manage.service.UserService;
-import com.sun.org.glassfish.gmbal.Description;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -221,5 +222,36 @@ public class UserServiceImpl implements UserService {
 			user = users;
 		}
 		return users;
+	}
+
+	@Override
+	public List<User> selectUserByUserName(String userName) {
+		List<User> user = userDao.selectByUserName(userName);
+		return user;
+	}
+
+	@Override
+	public RoleAndPower selectRoleAndPowerByUserName(String userName) {
+		List<User> user = userDao.selectByUserName(userName);
+		List<UserRole> userRole = userRoleDao.selectUserRoleByUserId(user.get(0).getId());
+		List<Role> roleList = new ArrayList<Role>();
+		List<Integer> roleId = new ArrayList<Integer>();
+		for (UserRole userRoleInfo : userRole) {
+			roleId.add(userRoleInfo.getRoleId());
+			Role role = roleDao.selectByPrimaryKey(userRoleInfo.getRoleId());
+			roleList.add(role);
+		}
+		List<Power> powerList = new ArrayList<Power>();
+		List<RolePower> rolePower = rolePowerDao.selectRolePowerByRoleId(roleId);
+		for (RolePower rolePowerInfo : rolePower) {
+			Power power = powerDao.selectByPrimaryKey(rolePowerInfo.getPoweId());
+			if (!powerList.contains(power)) {
+				powerList.add(power);
+			}
+		}
+		RoleAndPower roleAndPower = new RoleAndPower();
+		roleAndPower.setPowerList(powerList);
+		roleAndPower.setRoleList(roleList);
+		return roleAndPower;
 	}
 }

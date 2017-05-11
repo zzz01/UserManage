@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.hust.manage.model.User;
+import com.hust.manage.model.condition.RoleAndPower;
 import com.hust.manage.model.condition.UserQueryCondition;
 
 public interface UserService {
@@ -24,6 +25,8 @@ public interface UserService {
 	// 查询用户包含的权限信息
 	List<String> selectUserPowerUrl(String userName);
 
+	List<User> selectUserByUserName(String userName);
+
 	long countOfUser();
 
 	List<User> selectUserByCondition(UserQueryCondition userQueryCondition);
@@ -31,4 +34,6 @@ public interface UserService {
 	// String getCurrentUser(HttpServletRequest request);
 
 	// boolean insertUser(User user);
+
+	RoleAndPower selectRoleAndPowerByUserName(String userName);
 }

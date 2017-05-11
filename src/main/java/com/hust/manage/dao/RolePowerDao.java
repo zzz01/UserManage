@@ -23,6 +23,17 @@ public class RolePowerDao {
 		return rolePowers;
 	}
 
+	public List<RolePower> selectRolePowerByRoleId(List<Integer> roleId) {
+		RolePowerExample example = new RolePowerExample();
+		for (int roleIdInfo : roleId) {
+			Criteria criteria = example.createCriteria();
+			criteria.andRoleIdEqualTo(roleIdInfo);
+			example.or(criteria);
+		}
+		List<RolePower> rolePowers = rolePowerMapper.selectByExample(example);
+		return rolePowers;
+	}
+
 	public int deleteRolePowerByRoleId(int roleId) {
 		RolePowerExample example = new RolePowerExample();
 		Criteria criteria = example.createCriteria();
