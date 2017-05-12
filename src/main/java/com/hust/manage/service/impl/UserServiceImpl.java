@@ -254,4 +254,14 @@ public class UserServiceImpl implements UserService {
 		roleAndPower.setRoleList(roleList);
 		return roleAndPower;
 	}
+
+	@Override
+	public boolean login(String userName, String password) {
+		List<User> users = userDao.checkLogin(userName, password);
+		if (null == users || users.size() == 0) {
+			logger.info("username or password is incorrect");
+			return false;
+		}
+		return true;
+	}
 }

@@ -56,10 +56,11 @@ public class UserCasFilter extends UserFilter implements RightConst {
 		if (!subject.isAuthenticated()) {
 			if (!shiroLogin(sessionId, subject, httpRequest, httpResponse)) {
 				StatusEnvelope.forbidden("登陆失败！");
+				return false;
 			}
 			return false;
 		}
-			
+
 		User userInfo = (User) subject.getPrincipal();
 		if (userInfo == null || !userInfo.getUserName().equals(sessionId)) {
 			subject.logout();

@@ -22,6 +22,15 @@ public class UserDao {
 		return userMapper.selectByPrimaryKey(userId);
 	}
 
+	public List<User> checkLogin(String userName, String password) {
+		UserExample example = new UserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUserNameEqualTo(userName);
+		criteria.andUserPasswordEqualTo(password);
+		List<User> users = userMapper.selectByExample(example);
+		return users;
+	}
+
 	public List<User> selectAllUserInfo() {
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();

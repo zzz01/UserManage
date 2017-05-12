@@ -50,6 +50,4 @@ public class ResultUtil {
 		logger.info("status:{},result:{}", ResultVal.ERROR_CODE, Msg.toString());
 		return null;
 	}
-	
-	
 }

@@ -18,7 +18,7 @@ public interface UserService {
 
 	boolean insertUser(User user, List<String> roleName);
 
-	// boolean login(String userName, String password);
+	boolean login(String userName, String password);
 
 	// void logout(HttpServletRequest request);
 
@@ -30,8 +30,6 @@ public interface UserService {
 	long countOfUser();
 
 	List<User> selectUserByCondition(UserQueryCondition userQueryCondition);
-
-	// String getCurrentUser(HttpServletRequest request);
 
 	// boolean insertUser(User user);
 
