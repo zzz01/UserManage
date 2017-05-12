@@ -20,8 +20,6 @@ public interface UserService {
 
 	boolean login(String userName, String password);
 
-	// void logout(HttpServletRequest request);
-
 	// 查询用户包含的权限信息
 	List<String> selectUserPowerUrl(String userName);
 
@@ -30,8 +28,6 @@ public interface UserService {
 	long countOfUser();
 
 	List<User> selectUserByCondition(UserQueryCondition userQueryCondition);
-
-	// boolean insertUser(User user);
 
 	RoleAndPower selectRoleAndPowerByUserName(String userName);
 }

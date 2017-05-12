@@ -88,7 +88,7 @@
 			order by ${orderByClause}
 		</if>
 		<if test="pageStart !=0 or pageLimit!=0">
-			limit #{(pageStart-1)*pageLimit+1},#{pageLimit}
+			limit #{pageStart},#{pageLimit}
 		</if>
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"

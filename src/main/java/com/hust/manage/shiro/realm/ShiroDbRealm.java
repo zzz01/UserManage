@@ -85,5 +85,4 @@ public class ShiroDbRealm extends AuthorizingRealm implements RightConst {
 			return null;
 		}
 	}
-
 }

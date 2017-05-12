@@ -25,7 +25,7 @@ public class ResultUtil {
 		JSONObject object = new JSONObject();
 		object.put("status", HttpStatus.OK);
 		logger.info("status:{},result:{}", HttpStatus.OK, StringUtils.EMPTY);
-		return null;
+		return object;
 	}
 
 	public static Object successWithOutStatus(Object result) {
@@ -48,6 +48,6 @@ public class ResultUtil {
 		object.put("status", ResultVal.ERROR_CODE);
 		object.put("result", Msg);
 		logger.info("status:{},result:{}", ResultVal.ERROR_CODE, Msg.toString());
-		return null;
+		return object;
 	}
 }
