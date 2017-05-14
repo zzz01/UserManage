@@ -9,6 +9,6 @@
 <title></title>
 </head>
 <body>
-	<h1>恭喜你登录成功</h1>
+	<h1>请求失败，请确认访问资源是否正确</h1>
 </body>
 </html>

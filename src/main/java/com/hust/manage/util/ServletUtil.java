@@ -9,7 +9,7 @@ public class ServletUtil {
 		Cookie[] cookie = request.getCookies();
 		if (cookie != null && cookie.length > 0) {
 			for (Cookie cookieInfo : cookie) {
-				if (cookieInfo.equals(name)) {
+				if (cookieInfo.getName().equals(name)) {
 					return cookieInfo.getValue();
 				}
 			}

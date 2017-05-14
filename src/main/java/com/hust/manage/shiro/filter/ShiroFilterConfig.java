@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.hust.manage.shiro.config.ShiroFilterRegistry;
-
 @Configuration
 @WebAppConfiguration
 public class ShiroFilterConfig {

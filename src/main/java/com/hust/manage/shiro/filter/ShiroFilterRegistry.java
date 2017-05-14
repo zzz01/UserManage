@@ -1,4 +1,4 @@
-package com.hust.manage.shiro.config;
+package com.hust.manage.shiro.filter;
 
 import java.util.HashMap;
 import java.util.Map;

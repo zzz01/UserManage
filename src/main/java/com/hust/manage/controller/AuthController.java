@@ -39,7 +39,7 @@ public class AuthController implements RightConst, WebConst {
 		Subject subject = SecurityUtils.getSubject();
 		if (shiroLogin(userName, subject, request, response)) {
 			String sessionId = subject.getSession().getId().toString();
-			Cookie ssoCookie = new Cookie(WebConst.COOKIE_SESSION, String.valueOf(userName));
+			Cookie ssoCookie = new Cookie(WebConst.COOKIE_SESSION, userName);
 
 			String path = request.getContextPath();
 			path = "".equals(path) ? "/" : path;
@@ -84,6 +84,7 @@ public class AuthController implements RightConst, WebConst {
 		DbSession dbSession = new DbSession();
 		dbSession.put(ROLE_LIST, roleList);
 		dbSession.put(PERMISSION_LIST, powerList);
+		
 
 		return true;
 	}

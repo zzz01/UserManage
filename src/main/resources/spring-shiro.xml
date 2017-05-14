@@ -17,12 +17,22 @@
 		<!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器 -->
 		<property name="filterChainDefinitions">
 			<value>
+				/Auth/** = anon
 				/index.jsp = anon
-				/user/** = perms["user:selectAllUser"]
+				/user/** = userCasFileter
+				/role/**=userCasFileter
+				/power/** = userCasFileter
 			</value>
 		</property>
+		<property name="filters">
+			<map>
+				<entry key="userCasFileter">
+					<bean class="com.hust.manage.shiro.filter.UserCasFilter" />
+				</entry>
+			</map>
+		</property>
 	</bean>
-
+	
 	<!-- 配置 Shiro 的 SecurityManager Bean. -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="cacheManager" ref="cacheManager" />

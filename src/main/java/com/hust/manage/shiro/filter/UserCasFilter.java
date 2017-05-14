@@ -37,6 +37,7 @@ public class UserCasFilter extends UserFilter implements RightConst {
 
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
+		System.out.println("进入拦截器喽");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String sessionId = ServletUtil.cookieVal(httpRequest, WebConst.COOKIE_SESSION);
@@ -45,8 +46,8 @@ public class UserCasFilter extends UserFilter implements RightConst {
 			logger.info("未登录");
 			return false;
 		}
-
-		List<User> user = userService.selectUserByUserName(WebConst.COOKIE_SESSION);
+		System.out.println("说明缓存里面有");
+		List<User> user = userService.selectUserByUserName(sessionId);
 		if (user.isEmpty()) {
 			StatusEnvelope.notFound("用户不存在");
 			logger.info("用户不存在");
@@ -65,7 +66,15 @@ public class UserCasFilter extends UserFilter implements RightConst {
 		if (userInfo == null || !userInfo.getUserName().equals(sessionId)) {
 			subject.logout();
 		}
-		return true;
+		// 进行权限的判断，
+		DbSession dbSession = new DbSession();
+		List<Power> powerList = dbSession.getPowerList();
+		for (Power powerInfo : powerList) {
+			if (powerInfo.getPowerUrl().equals(httpRequest.getServletPath())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private boolean shiroLogin(String userName, Subject subject, HttpServletRequest request,
